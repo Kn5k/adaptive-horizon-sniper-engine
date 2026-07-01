@@ -9,10 +9,10 @@ def run_70pct_adaptive_sniper():
     print("     QUANT ALPHA ENGINE: MODEL 2 ADAPTIVE STEP RETRAINING ENGINE (70%+ TARGET)   ")
     print("="*85)
     
-    target_coin = input("🪙 Enter Single Ticker to Hunt (e.g., BTC-USD, ETH-USD, SOL-USD): ").strip().upper()
-    starting_capital = float(input("💰 Total Starting Portfolio Capital ($USD): "))
-    allocation_per_trade = float(input("⚡ Allocation Cash Size Per Trade ($USD): "))
-    backtest_days = int(input("📅 Enter Live Simulation Window Depth (e.g., 30, 45 days): "))
+    target_coin = input(" Enter Single Ticker to Hunt (e.g., BTC-USD, ETH-USD, SOL-USD): ").strip().upper()
+    starting_capital = float(input("Total Starting Portfolio Capital ($USD): "))
+    allocation_per_trade = float(input(" Allocation Cash Size Per Trade ($USD): "))
+    backtest_days = int(input(" Enter Live Simulation Window Depth (e.g., 30, 45 days): "))
     
     training_days = 45   # Length of rolling memory the engine keeps active
     current_time_anchor = datetime.now(timezone.utc)
@@ -32,7 +32,7 @@ def run_70pct_adaptive_sniper():
     df_raw = yf.download(tickers=target_coin, start=start_date_pull, end=end_date_pull, interval=chosen_interval, multi_level_index=False, progress=False)
     
     if df_raw.empty or len(df_raw) < 100:
-        print("❌ Operational Failure: Core pipeline data stream empty.")
+        print(" Operational Failure: Core pipeline data stream empty.")
         return
         
     df = df_raw[["Open", "High", "Low", "Close", "Volume"]].copy()
@@ -78,7 +78,7 @@ def run_70pct_adaptive_sniper():
     
     print(f"[2/3] Initiating live simulation. Entering Hour-by-Hour Retraining Core Matrix...")
     print("\n" + "="*125)
-    print(f"             📦 ADAPTIVE STEP-RETRAIN SNIPER TRANSACTION LEDGER ({target_coin})               ")
+    print(f"              ADAPTIVE STEP-RETRAIN SNIPER TRANSACTION LEDGER ({target_coin})               ")
     print("="*125)
     print(f"{'Asset':<8} | {'Date/Time':<16} | {'Type':<5} | {'Model Conf':<10} | {'Entry Px':<10} | {'Exit Px':<10} | {'Real Move%':<10} | {'Net PnL ($)':<12} | {'Balance ($)':<15}")
     print("-"*125)
