@@ -1,12 +1,12 @@
 # Adaptive Horizon Sniper Engine (AHSE)
 
-Adaptive Horizon Sniper Engine (AHSE) is a quantitative machine learning research project investigating short-term cryptocurrency prediction under increasingly realistic validation conditions.
+Adaptive Horizon Sniper Engine (AHSE) is a quantitative machine learning research project investigating short-horizon cryptocurrency prediction under realistic validation conditions.
 
-Rather than presenting a single trading model, the project documents the evolution of five successive frameworks, each designed to address weaknesses identified in earlier versions. The research focuses on walk-forward validation, probability calibration, execution realism, cross-asset robustness, and regime-aware prediction.
+The project began as a simple experiment exploring whether machine learning could identify recurring directional patterns in cryptocurrency markets. Over five successive versions, the framework evolved from a basic predictive model into a regime-aware research system incorporating walk-forward validation, probability calibration, execution-cost modeling, cross-asset testing, and market-regime analysis.
 
-The complete research paper is included in this repository as:
+Rather than focusing exclusively on maximizing historical returns, the project emphasizes methodological rigor and seeks to address common weaknesses found in financial machine learning research, including overfitting, look-ahead bias, parameter sensitivity, and unrealistic backtesting assumptions.
 
-**AHSE (cl).pdf**
+The complete research paper documenting the development of the framework is included in this repository as **AHSE (cl).pdf**.
 
 ---
 
@@ -31,57 +31,68 @@ versions/
 
 ## Framework Evolution
 
-### Version 1
+### Version 1 — Baseline Framework
 
-Baseline machine learning framework using Random Forest models and simple feature engineering.
+Established the initial machine learning pipeline using Random Forest models and basic technical features. The objective was to determine whether cryptocurrency market data contained exploitable short-term structure.
 
-### Version 2
+### Version 2 — Walk-Forward Learning
 
-Introduced rolling walk-forward validation and LightGBM-based prediction.
+Introduced rolling walk-forward validation and LightGBM-based prediction. This version focused on addressing market non-stationarity and reducing dependence on static train-test splits.
 
-### Version 3
+### Version 3 — Calibration & Realism
 
-Added probability calibration, transaction-cost modeling, and robustness testing.
+Added probability calibration, transaction-cost modeling, and robustness testing. This stage shifted the project from maximizing performance toward evaluating the reliability of reported results.
 
-### Version 4
+### Version 4 — Generalization
 
-Expanded evaluation across multiple cryptocurrency assets and market environments.
+Expanded testing across multiple cryptocurrency assets and introduced regime-based analysis. The objective was to determine whether observed predictive behavior generalized beyond a single market.
 
-### Version 5
+### Version 5 — Regime-Aware Expert Ensemble
 
-Implemented a regime-aware expert architecture and large-scale cross-sectional validation.
+Implemented a regime-aware architecture designed to assign specialized predictive models to different market environments. This version represents the final validated cryptocurrency framework and serves as the primary focus of the accompanying paper.
 
 ---
 
-## Key Findings
+## Methodology
 
-* Walk-forward validation produces more reliable estimates than static train-test splits.
-* Probability calibration improves decision quality despite reducing apparent performance.
-* Execution costs materially affect strategy viability.
-* Predictive performance varies significantly across market regimes.
-* Regime-aware architectures appear more stable than monolithic forecasting systems.
+The framework follows a rolling walk-forward learning process in which models are trained only on information that would have been historically available at the time of prediction.
+
+Across successive versions, the project incorporated:
+
+* Walk-forward validation
+* Probability calibration
+* Execution-cost modeling
+* Cross-asset testing
+* Regime analysis
+* Multi-stage out-of-sample evaluation
+
+The final Version 5 framework was evaluated across approximately 630 days of historical data using a fixed parameter configuration deployed across sixteen independent cryptocurrency markets.
 
 ---
 
 ## Validation Universe
 
-Version 5 was evaluated across sixteen cryptocurrency markets:
+Version 5 was evaluated across:
 
 BTC, ETH, SOL, BNB, XRP, ADA, DOGE, AVAX, LINK, DOT, LTC, NEAR, OP, INJ, ATOM, and THETA.
 
+The objective was to assess whether predictive performance could persist across assets with different liquidity profiles, volatility characteristics, and market structures.
+
 ---
 
-## Example Version 5 Results
+## Example Results
 
-| Asset | Return   | Precision |
-| ----- | -------- | --------- |
-| BTC   | +72.65%  | 63.3%     |
-| ETH   | +102.18% | 63.9%     |
-| AVAX  | +106.74% | 64.6%     |
-| ADA   | +82.37%  | 60.0%     |
-| DOT   | +77.02%  | 55.6%     |
+| Asset | Validation Return | Precision |
+| ----- | ----------------- | --------- |
+| BTC   | +72.65%           | 63.3%     |
+| ETH   | +102.18%          | 63.9%     |
+| AVAX  | +106.74%          | 64.6%     |
+| ADA   | +82.37%           | 60.0%     |
+| DOT   | +77.02%           | 55.6%     |
 
-These results are discussed in detail within the accompanying paper.
+Across the full validation universe, the framework demonstrated positive returns on all tested assets while maintaining precision levels generally ranging between 55% and 65%.
+
+A detailed discussion of methodology, experiments, and results is provided in the accompanying research paper.
 
 ---
 
@@ -93,15 +104,7 @@ pip install -r requirements.txt
 
 ---
 
-## Research Paper
-
-The complete methodology, experiments, results, limitations, and discussion are documented in:
-
-**AHSE (cl).pdf**
-
----
-
 ## Disclaimer
 
-This repository is intended for educational and research purposes only. Historical results do not guarantee future performance.
+This repository is intended for educational and research purposes only. Historical results do not guarantee future performance, and nothing contained within this project should be interpreted as financial or investment advice.
 
