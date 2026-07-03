@@ -89,7 +89,7 @@ def run_calibrated_sniper_engine():
     
     print(f"[2/3] Executing Calibrated Simulation Loop over {len(sim_rows)} steps...")
     print("\n" + "="*135)
-    print(f"             📦 VERSION 3 (MODULE A): CALIBRATED TRANSACTION LEDGER ({target_coin})               ")
+    print(f"              VERSION 3 (MODULE A): CALIBRATED TRANSACTION LEDGER ({target_coin})               ")
     print("="*135)
     print(f"{'Asset':<8} | {'Date/Time':<16} | {'Type':<5} | {'Raw Tree':<10} | {'Calib Conf':<11} | {'Slippage':<9} | {'Net PnL ($)':<12} | {'Balance ($)':<15}")
     print("-"*135)
