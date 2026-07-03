@@ -132,7 +132,7 @@ def run_70pct_adaptive_sniper():
             active_position_expiry = None
             active_position_data = {}
 
-        # 🚨 THE BRAIN RESET: Extract rolling history ending EXACTLY at this active hour
+        #  THE BRAIN RESET: Extract rolling history ending EXACTLY at this active hour
         rolling_train = df_clean.loc[df_clean.index < current_time].iloc[-int(training_days * 24):]
         
         # Enforce probability calibration constraints on the tree structures
@@ -172,10 +172,10 @@ def run_70pct_adaptive_sniper():
     total_trades = long_trades + short_trades
     total_wins = long_wins + short_wins
     print("="*125)
-    print(f"                               🏆 DYNAMIC DIRECTIONAL DIAGNOSTICS REPORT                                 ")
+    print(f"                                DYNAMIC DIRECTIONAL DIAGNOSTICS REPORT                                 ")
     print("="*125)
-    print(f" 🟢 LONG POSITION METRICS  | Total Executed: {long_trades:<2} | Wins: {long_wins:<2} | Losses: {long_losses:<2} | Capital Bleed: ${long_loss_dollars:,.2f}")
-    print(f" 🔴 SHORT POSITION METRICS | Total Executed: {short_trades:<2} | Wins: {short_wins:<2} | Losses: {short_losses:<2} | Capital Bleed: ${short_loss_dollars:,.2f}")
+    print(f"  LONG POSITION METRICS  | Total Executed: {long_trades:<2} | Wins: {long_wins:<2} | Losses: {long_losses:<2} | Capital Bleed: ${long_loss_dollars:,.2f}")
+    print(f"  SHORT POSITION METRICS | Total Executed: {short_trades:<2} | Wins: {short_wins:<2} | Losses: {short_losses:<2} | Capital Bleed: ${short_loss_dollars:,.2f}")
     print("-" * 125)
     print(f" Real Out-of-Sample Strategy Precision: {(total_wins / total_trades)*100:.2f}%" if total_trades > 0 else " Real Out-of-Sample Strategy Precision: 0.00%")
     print(f" Final Portfolio Balance Realized     : ${portfolio_account_balance:,.2f} (Net Growth: {((portfolio_account_balance - starting_capital)/starting_capital)*100:+.2f}%)")
