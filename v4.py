@@ -19,7 +19,7 @@ def run_quant_research_platform():
         "BTC-USD", "ETH-USD", "SOL-USD", "BNB-USD", "XRP-USD", 
     ]
     
-    backtest_days = int(input("📅 Enter Macro Simulation Horizon Depth in Days (e.g., 90, 180, 365): "))
+    backtest_days = int(input(" Enter Macro Simulation Horizon Depth in Days (e.g., 90, 180, 365): "))
     
     # Freeze Absolute Baseline Operational Parameters (Strictly No Re-tuning)
     STATIC_MEM = 50
@@ -34,8 +34,8 @@ def run_quant_research_platform():
     start_date_pull = (sim_start_dt - timedelta(days=STATIC_MEM + CALIBRATION_DAYS + 10)).strftime('%Y-%m-%d')
     end_date_pull = (sim_end_dt + timedelta(days=2)).strftime('%Y-%m-%d')
     
-    print(f"\n🚀 Initializing Cross-Sectional Invariance Suite over {len(asset_universe)} Assets...")
-    print(f"📈 Timeline Phase: {start_date_pull} to {end_date_pull}")
+    print(f"\n Initializing Cross-Sectional Invariance Suite over {len(asset_universe)} Assets...")
+    print(f" Timeline Phase: {start_date_pull} to {end_date_pull}")
     
     # Global Registries for Platform Metrics
     universe_summary_ledger = []
@@ -194,13 +194,13 @@ def run_quant_research_platform():
     df_regimes = pd.DataFrame(global_regime_trades_record)
     
     print("\n" + "="*95)
-    print("                    🏆 PLATFORM REPORT: CROSS-SECTIONAL INDEPENDENT AUDIT          ")
+    print("                     PLATFORM REPORT: CROSS-SECTIONAL INDEPENDENT AUDIT          ")
     print("="*95)
-    print(f"📊 BASKET DISTRIBUTION METRICS | Total Verified Universe Assets: {len(df_universe)}")
+    print(f" BASKET DISTRIBUTION METRICS | Total Verified Universe Assets: {len(df_universe)}")
     profitable_assets_count = len(df_universe[df_universe["Yield"] > 0])
     profitable_ratio = (profitable_assets_count / len(df_universe)) * 100
-    print(f"🔥 UNIVERSE BREADTH EFFICIENCY | {profitable_assets_count}/{len(df_universe)} Assets Profitable ({profitable_ratio:.2f}% Hit Rate)")
-    print(f"⚔️  AVERAGE OUT-OF-SAMPLE ALPHA | {df_universe['Alpha'].mean():+.2f}% Generation vs. Buy-and-Hold Baseline")
+    print(f" UNIVERSE BREADTH EFFICIENCY | {profitable_assets_count}/{len(df_universe)} Assets Profitable ({profitable_ratio:.2f}% Hit Rate)")
+    print(f"  AVERAGE OUT-OF-SAMPLE ALPHA | {df_universe['Alpha'].mean():+.2f}% Generation vs. Buy-and-Hold Baseline")
     print("-" * 95)
     
     print(f"{'Ticker':<10} | {'Strategy Yield':<15} | {'Precision':<11} | {'Volume':<8} | {'Benchmark (B&H)':<16} | {'Net Alpha':<10}")
@@ -210,7 +210,7 @@ def run_quant_research_platform():
     print("-" * 95)
     
     # Render Macro Regime Deep-Dive Report
-    print("🧠 MARKET ENVIRONMENT REGIME PROFILE')")
+    print(" MARKET ENVIRONMENT REGIME PROFILE')")
     if not df_regimes.empty:
         regime_perf = df_regimes.groupby(['Trend', 'Vol']).agg(
             Total_Trades=('Win', 'count'),
@@ -223,7 +223,7 @@ def run_quant_research_platform():
     print("-" * 95)
     
     # Render Feature Power Analytics
-    print("🧬 STRUCTURAL FEATURE EXPLAINABILITY (GAIN IMPORTANCE VALUES OVER TIME)")
+    print(" STRUCTURAL FEATURE EXPLAINABILITY (GAIN IMPORTANCE VALUES OVER TIME)")
     for feat, gain_list in global_feature_gains.items():
         avg_gain_power = np.mean(gain_list) if gain_list else 0.0
         print(f" * {feat:<20} -> Average Retraining Information Gain: {avg_gain_power:.4f}")
