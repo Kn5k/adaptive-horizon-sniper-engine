@@ -36,7 +36,7 @@ def run_calibrated_sniper_engine():
     df_raw = yf.download(tickers=target_coin, start=start_date_pull, end=end_date_pull, interval=chosen_interval, multi_level_index=False, progress=False)
     
     if df_raw.empty or len(df_raw) < 100:
-        print("❌ Operational Failure: Empty historical stream packet.")
+        print(" Operational Failure: Empty historical stream packet.")
         return
         
     df = df_raw[["Open", "High", "Low", "Close", "Volume"]].copy()
@@ -211,13 +211,13 @@ def run_calibrated_sniper_engine():
     total_wins = long_wins + short_wins
     
     print("="*135)
-    print(f"                            🏆 MODULE A PROBABILITY CALIBRATION & FRICTION AUDIT                               ")
+    print(f"                             MODULE A PROBABILITY CALIBRATION & FRICTION AUDIT                               ")
     print("="*135)
-    print(f" 🛡️  SYSTEM BRIER CALIBRATION SCORE : {calculated_brier_score:.5f}  (Lower Bound Approaching 0.000 = Elite Calibration)")
-    print(f" 📊  CALIBRATED SIGNAL EFFICIENCY : Total Executed: {total_trades} | Real Out-of-Sample Precision: {(total_wins/total_trades)*100:.2f}%" if total_trades > 0 else " 📊 CALIBRATED SIGNAL EFFICIENCY: 0 Trades Triggers.")
-    print(f" 🟢  LONG METRICS                 | Executed: {long_trades:<2} | Wins: {long_wins:<2} | Losses: {long_losses:<2}")
-    print(f" 🔴  SHORT METRICS                | Executed: {short_trades:<2} | Wins: {short_wins:<2} | Losses: {short_losses:<2}")
-    print(f" 💰  REALIZED FINANCIAL PROFILE   | Net Yield: {((portfolio_account_balance - starting_capital)/starting_capital)*100:+.2f}% | Max Drawdown: {portfolio_max_drawdown:.2f}%")
+    print(f"   SYSTEM BRIER CALIBRATION SCORE : {calculated_brier_score:.5f}  (Lower Bound Approaching 0.000 = Elite Calibration)")
+    print(f"   CALIBRATED SIGNAL EFFICIENCY : Total Executed: {total_trades} | Real Out-of-Sample Precision: {(total_wins/total_trades)*100:.2f}%" if total_trades > 0 else " 📊 CALIBRATED SIGNAL EFFICIENCY: 0 Trades Triggers.")
+    print(f"   LONG METRICS                 | Executed: {long_trades:<2} | Wins: {long_wins:<2} | Losses: {long_losses:<2}")
+    print(f"   SHORT METRICS                | Executed: {short_trades:<2} | Wins: {short_wins:<2} | Losses: {short_losses:<2}")
+    print(f"   REALIZED FINANCIAL PROFILE   | Net Yield: {((portfolio_account_balance - starting_capital)/starting_capital)*100:+.2f}% | Max Drawdown: {portfolio_max_drawdown:.2f}%")
     print("="*135 + "\n")
 
 if __name__ == "__main__":
