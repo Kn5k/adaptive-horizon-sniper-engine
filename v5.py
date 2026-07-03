@@ -38,21 +38,21 @@ def run_ultimate_validation_lab():
     start_date_pull = (sim_start_dt - timedelta(days=STATIC_MEM + CALIBRATION_DAYS + PURGE_GAP_DAYS + 15)).strftime('%Y-%m-%d')
     end_date_pull = (sim_end_dt + timedelta(days=2)).strftime('%Y-%m-%d')
     
-    print(f"🚀 Initializing Deep Validation Suite over {len(asset_universe)} Assets...")
-    print(f"📈 Macro Temporal Envelope: {sim_start_dt.strftime('%Y-%m-%d')} to {sim_end_dt.strftime('%Y-%m-%d')} ({BACKTEST_DAYS} Days)")
-    print(f"🛡️  Purged Validation Buffer Engaged: {PURGE_GAP_DAYS} Days Non-Overlapping Separation")
-    print(f"💸 Exchange Level Order-Book Friction Enforced: {FIXED_EXECUTION_COST*100:.2f}% Flat Per Trade")
+    print(f" Initializing Deep Validation Suite over {len(asset_universe)} Assets...")
+    print(f" Macro Temporal Envelope: {sim_start_dt.strftime('%Y-%m-%d')} to {sim_end_dt.strftime('%Y-%m-%d')} ({BACKTEST_DAYS} Days)")
+    print(f"  Purged Validation Buffer Engaged: {PURGE_GAP_DAYS} Days Non-Overlapping Separation")
+    print(f" Exchange Level Order-Book Friction Enforced: {FIXED_EXECUTION_COST*100:.2f}% Flat Per Trade")
     print("-" * 95)
     
     universe_summary_ledger = []
     
     for idx, ticker in enumerate(asset_universe):
-        print(f"🔬 Processing Matrix [{idx+1}/{len(asset_universe)}]: {ticker:<10} ... running full multi-year data stream")
+        print(f" Processing Matrix [{idx+1}/{len(asset_universe)}]: {ticker:<10} ... running full multi-year data stream")
         try:
             # Download 2-year hourly dataset
             df_raw = yf.download(tickers=ticker, start=start_date_pull, end=end_date_pull, interval="1h", multi_level_index=False, progress=False)
             if df_raw.empty or len(df_raw) < 5000: 
-                print(f"   ⚠️ Insufficient data history for {ticker}. Skipping.")
+                print(f"    Insufficient data history for {ticker}. Skipping.")
                 continue
             
             df = df_raw[["Open", "High", "Low", "Close", "Volume"]].copy()
@@ -165,23 +165,23 @@ def run_ultimate_validation_lab():
             })
             
         except Exception as e:
-            print(f"   ⚠️ Error executing validation slice for {ticker}: {str(e)}")
+            print(f"    Error executing validation slice for {ticker}: {str(e)}")
             continue
 
     # --- FINAL UNIVERSAL SCORECARD RENDERING ---
     df_validation = pd.DataFrame(universe_summary_ledger)
     
     print("\n" + "="*95)
-    print("               🏆 FINAL VERSION 5 AUDIT REPORT: ACCREDITED QUANT EDGE              ")
+    print("                FINAL VERSION 5 AUDIT REPORT: ACCREDITED QUANT EDGE              ")
     print("="*95)
-    print(f"📊 SYSTEMIC UNIVERSE SIZE      | Total Independent Verified Assets : {len(df_validation)}")
+    print(f" SYSTEMIC UNIVERSE SIZE      | Total Independent Verified Assets : {len(df_validation)}")
     
     profitable_assets = len(df_validation[df_validation["Yield"] > 0])
     alpha_generating_assets = len(df_validation[df_validation["Alpha"] > 0])
     universe_hit_rate = (profitable_assets / len(df_validation)) * 100 if len(df_validation) > 0 else 0
     
-    print(f"🔥 SYSTEM DEPLOYMENT BREADTH   | {profitable_assets}/{len(df_validation)} Portfolio Streams Profitable ({universe_hit_rate:.2f}% Success Rate)")
-    print(f"⚔️  MACRO ALPHA GENERATION MAX  | Mean Outperformance Generation     : {df_validation['Alpha'].mean():+.2f}% vs. Market")
+    print(f" SYSTEM DEPLOYMENT BREADTH   | {profitable_assets}/{len(df_validation)} Portfolio Streams Profitable ({universe_hit_rate:.2f}% Success Rate)")
+    print(f"  MACRO ALPHA GENERATION MAX  | Mean Outperformance Generation     : {df_validation['Alpha'].mean():+.2f}% vs. Market")
     print("-" * 95)
     
     print(f"{'Ticker':<12} | {'Validation Return':<19} | {'Precision':<11} | {'Trades':<8} | {'Market Benchmark':<16} | {'Pure Alpha':<10}")
