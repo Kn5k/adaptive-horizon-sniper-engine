@@ -10,10 +10,10 @@ def run_robustness_matrix_engine():
     print("      QUANT ALPHA ENGINE: VERSION 3 (MODULE B - PARAMETER ROBUSTNESS MATRIX)       ")
     print("="*95)
     
-    target_coin = input("🪙 Enter Single Ticker to Hunt (e.g., BTC-USD, ETH-USD, SOL-USD): ").strip().upper()
+    target_coin = input(" Enter Single Ticker to Hunt (e.g., BTC-USD, ETH-USD, SOL-USD): ").strip().upper()
     starting_capital = 10000.0
     allocation_per_trade = 10000.0
-    backtest_days = int(input("📅 Enter Live Simulation Window Depth (e.g., 30, 45 days): "))
+    backtest_days = int(input(" Enter Live Simulation Window Depth (e.g., 30, 45 days): "))
     
     # Define Parameter Sweep Dimensions
     memory_options = [30, 40, 50, 60]
@@ -33,7 +33,7 @@ def run_robustness_matrix_engine():
     df_raw = yf.download(tickers=target_coin, start=start_date_pull, end=end_date_pull, interval="1h", multi_level_index=False, progress=False)
     
     if df_raw.empty or len(df_raw) < 500:
-        print("❌ Operational Failure: Insufficient data packet streamed.")
+        print(" Operational Failure: Insufficient data packet streamed.")
         return
         
     df = df_raw[["Open", "High", "Low", "Close", "Volume"]].copy()
@@ -161,24 +161,24 @@ def run_robustness_matrix_engine():
 
     # --- RENDER STRATEGY ROBUSTNESS REPORT CARDS ---
     print("\n" + "="*85)
-    print(f"                  🏆 DYNAMIC PARAMETER ROBUSTNESS GRID ({target_coin})                   ")
+    print(f"                   DYNAMIC PARAMETER ROBUSTNESS GRID ({target_coin})                   ")
     print("="*85)
     
-    print("\n📊 MATRIX 1: ABSOLUTE NET STRATEGY YIELD (%)")
+    print("\n MATRIX 1: ABSOLUTE NET STRATEGY YIELD (%)")
     print("-" * 65)
     print(f"{'Mem Window':<12} | {'Conf 68%':<10} | {'Conf 70%':<10} | {'Conf 72%':<10} | {'Conf 75%':<10}")
     print("-" * 65)
     for mem in memory_options:
         print(f"{str(mem)+' Days':<12} | {heatmap_yields[mem][0.68]:+8.2f}% | {heatmap_yields[mem][0.70]:+8.2f}% | {heatmap_yields[mem][0.72]:+8.2f}% | {heatmap_yields[mem][0.75]:+8.2f}%")
         
-    print("\n🎯 MATRIX 2: OUT-OF-SAMPLE STRATEGY PRECISION (%)")
+    print("\n MATRIX 2: OUT-OF-SAMPLE STRATEGY PRECISION (%)")
     print("-" * 65)
     print(f"{'Mem Window':<12} | {'Conf 68%':<10} | {'Conf 70%':<10} | {'Conf 72%':<10} | {'Conf 75%':<10}")
     print("-" * 65)
     for mem in memory_options:
         print(f"{str(mem)+' Days':<12} | {heatmap_precisions[mem][0.68]:6.2f}%    | {heatmap_precisions[mem][0.70]:6.2f}%    | {heatmap_precisions[mem][0.72]:6.2f}%    | {heatmap_precisions[mem][0.75]:6.2f}%")
 
-    print("\n📦 MATRIX 3: EXECUTION VOLUME (TOTAL TRADES)")
+    print("\n MATRIX 3: EXECUTION VOLUME (TOTAL TRADES)")
     print("-" * 65)
     print(f"{'Mem Window':<12} | {'Conf 68%':<10} | {'Conf 70%':<10} | {'Conf 72%':<10} | {'Conf 75%':<10}")
     print("-" * 65)
